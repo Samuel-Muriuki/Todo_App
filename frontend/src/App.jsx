@@ -1,9 +1,25 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
+import axios from 'axios'
 import TodoForm from './components/TodoForm'
 import Table from './components/Table'
 
 function App() {
+
+  const [todos, setTodos] = useState("")
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/todo/")
+      console.log("response: ", response);
+    } catch (errror) {
+      console.log("error: ", errror);
+    }
+  }
 
   return (
     <div className='bg-indigo-100 px-8 min-h-screen'>
