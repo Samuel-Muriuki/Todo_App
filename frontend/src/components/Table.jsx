@@ -3,7 +3,7 @@ import { MdOutlineDeleteOutline, MdEditNote, MdOutlineCheckBox, MdOutlineCheckBo
 
 const Table = () => {
     return (
-        <div className='py-32'>
+        <div className='py-2'>
             <table className='w-11/12 max-w-4x1'>
                 <thead className='border-b-2 border-black'>
                     <tr>
