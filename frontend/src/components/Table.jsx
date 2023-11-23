@@ -25,10 +25,12 @@ const Table = ({ todos, setTodos, isLoading }) => {
                                         </td>
                                         <td className='p-3 text-sm'>{todoItem.body}</td>
                                         <td className='p-3 text-sm text-center'>
-                                            <span className='p-1.5 text-xs font-medium tracking-wider rounded-md bg-green-300'>Done</span>
+                                            <span className={`p-1.5 text-xs font-medium tracking-wider rounded-md ${todoItem.completed ? "bg-green-300" : "bg-red-300"}`}>
+                                                {todoItem.completed ? 'Done' : 'Incomplete'}
+                                            </span>
                                         </td>
-                                        <td className='p-3 text-sm'>22-11-23</td>
-                                        <td className='p-3 text-sm font-medium grid grid-flow-col items-center mt-5'>
+                                        <td className='p-3 text-sm'>{ new Date(todoItem.created).toLocaleString() }</td>
+                                        <td className='p-3 text-lg font-medium grid grid-flow-col items-center'>
                                             <span className='text-x1 cursor-pointer'><MdEditNote /></span>
                                             <span className='text-x1 cursor-pointer'><MdOutlineDeleteOutline /></span>
                                         </td>
