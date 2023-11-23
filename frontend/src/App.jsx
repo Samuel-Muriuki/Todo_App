@@ -7,6 +7,7 @@ import Table from './components/Table'
 function App() {
 
   const [todos, setTodos] = useState("")
+  const [isLoading, setisLoading] = useState(true)
 
   useEffect(() => {
     fetchData()
@@ -15,9 +16,9 @@ function App() {
   const fetchData = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/todo/")
-      console.log("response: ", response);
+      setTodos(response.data)
+      setisLoading(false)
     } catch (errror) {
-      console.log("error: ", errror);
     }
   }
 
@@ -27,7 +28,11 @@ function App() {
         <h1 className='text-5x1 text-center pb-8'>To Do List</h1>
     </nav>
     <TodoForm />
-    <Table />
+    <Table
+      todos={todos}
+      setTodos={setTodos}
+      isLoading={isLoading}
+    />
     </div>
   )
 }
