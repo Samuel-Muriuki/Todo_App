@@ -14,6 +14,22 @@ const Table = ({ todos, setTodos, isLoading }) => {
         }
     }
 
+    const handleEdit = async (id, value) => {
+        try {
+            const response = await axios.patch(`http://127.0.0.1:8000/api/todo/${id}/`, value)
+            const newTodos = todos.map(todo => todo.id === id ? response.data : todo)
+            setTodos(newTodos)
+        } catch (error) {
+            console.log(error)            
+        }
+    }
+
+    const handleCheckbox = (id, value) => {
+        handleEdit( id, {
+            'completed': !value
+        } )
+    }
+
     return (
         <div className='py-2'>
             <table className='w-11/12 max-w-4x1'>
@@ -33,7 +49,8 @@ const Table = ({ todos, setTodos, isLoading }) => {
                                 return (
                                     <tr key={todoItem.id} className='border-b border-black'>
                                         <td className='p-3 text-sm' title={todoItem.id}>
-                                            <span className='inline-block cursor-pointer'>{todoItem.completed ? <MdOutlineCheckBox /> : <MdOutlineCheckBoxOutlineBlank />}</span>
+                                            <span onClick={() => handleCheckbox(todoItem.id, todoItem.completed)}
+                                                className='inline-block cursor-pointer'>{todoItem.completed ? <MdOutlineCheckBox /> : <MdOutlineCheckBoxOutlineBlank />}</span>
                                         </td>
                                         <td className='p-3 text-sm'>{todoItem.body}</td>
                                         <td className='p-3 text-sm text-center'>
