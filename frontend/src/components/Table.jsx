@@ -1,7 +1,19 @@
 import React from 'react'
+import axios from 'axios'
 import { MdOutlineDeleteOutline, MdEditNote, MdOutlineCheckBox, MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 
 const Table = ({ todos, setTodos, isLoading }) => {
+
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/api/todo/${id}/`)
+            const newList = todos.filter(todo => todo.id !== id)
+            setTodos(newList)
+        } catch (error) {
+            console.log(error)            
+        }
+    }
+
     return (
         <div className='py-2'>
             <table className='w-11/12 max-w-4x1'>
@@ -32,7 +44,7 @@ const Table = ({ todos, setTodos, isLoading }) => {
                                         <td className='p-3 text-sm'>{new Date(todoItem.created).toLocaleString()}</td>
                                         <td className='p-3 text-lg font-medium grid grid-flow-col items-center'>
                                             <span className='text-x1 cursor-pointer'><MdEditNote /></span>
-                                            <span className='text-x1 cursor-pointer'><MdOutlineDeleteOutline /></span>
+                                            <span className='text-x1 cursor-pointer'><MdOutlineDeleteOutline onClick={ () => handleDelete(todoItem.id) } /></span>
                                         </td>
                                     </tr>
                                 )
