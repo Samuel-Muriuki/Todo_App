@@ -29,7 +29,7 @@ const Table = ({ todos, setTodos, isLoading }) => {
                                                 {todoItem.completed ? 'Done' : 'Incomplete'}
                                             </span>
                                         </td>
-                                        <td className='p-3 text-sm'>{ new Date(todoItem.created).toLocaleString() }</td>
+                                        <td className='p-3 text-sm'>{new Date(todoItem.created).toLocaleString()}</td>
                                         <td className='p-3 text-lg font-medium grid grid-flow-col items-center'>
                                             <span className='text-x1 cursor-pointer'><MdEditNote /></span>
                                             <span className='text-x1 cursor-pointer'><MdOutlineDeleteOutline /></span>
@@ -37,7 +37,9 @@ const Table = ({ todos, setTodos, isLoading }) => {
                                     </tr>
                                 )
                             })
-                            }</>}
+                            }
+                        </>
+                    }
                 </tbody>
             </table>
         </div>
