@@ -76,9 +76,9 @@ const Table = ({ todos, setTodos, isLoading }) => {
                                         <td className='p-3 text-sm'>{new Date(todoItem.created).toLocaleString()}</td>
                                         <td className='p-3 text-lg font-medium grid grid-flow-col items-center'>
                                             <span className='text-x1 cursor-pointer'>
-                                                <button className="btn" onClick={() => document.getElementById('my_modal_1').showModal()}><MdEditNote onClick={() => setEditText(todoItem)} /></button>
+                                                <button className="btn text-lg bg-blue-300" onClick={() => document.getElementById('my_modal_1').showModal()}><MdEditNote onClick={() => setEditText(todoItem)} /></button>
                                             </span>
-                                            <span className='text-x1 cursor-pointer'><MdOutlineDeleteOutline onClick={() => handleDelete(todoItem.id)} /></span>
+                                            <span className='text-x1 cursor-pointer text-red-500'><MdOutlineDeleteOutline onClick={() => handleDelete(todoItem.id)} /></span>
                                         </td>
                                     </tr>
                                 )
@@ -97,8 +97,8 @@ const Table = ({ todos, setTodos, isLoading }) => {
                     <div className="modal-action">
                         <form method="dialog">
                             {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-primary" onClick={handleClick}>Edit</button>
-                            <button className="btn">Close</button>
+                            <button className="btn btn-primary mr-4" onClick={handleClick}>Edit</button>
+                            <button className="btn btn-warning">Close</button>
                         </form>
                     </div>
                 </div>
