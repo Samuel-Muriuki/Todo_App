@@ -12,7 +12,6 @@ const TodoForm = ({setTodos, fetchData}) => {
             ...prev,
             'body': e.target.value
         }))
-        console.log("newTodo: ", newTodo)
     }
 
     const postTodo = async () => {
